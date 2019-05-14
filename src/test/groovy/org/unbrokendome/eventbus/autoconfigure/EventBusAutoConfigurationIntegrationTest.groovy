@@ -31,10 +31,4 @@ class EventBusAutoConfigurationIntegrationTest extends Specification {
 
     @Autowired
     EventPublisher eventPublisher
-
-
-    def "Event bus components are registered automatically"() {
-        expect:
-            eventPublisher != null
-    }
 }

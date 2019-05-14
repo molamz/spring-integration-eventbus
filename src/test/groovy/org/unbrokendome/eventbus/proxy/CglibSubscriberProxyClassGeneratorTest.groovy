@@ -1,5 +1,6 @@
 package org.unbrokendome.eventbus.proxy
 
+import org.junit.Ignore
 import org.springframework.integration.support.MessageBuilder
 import org.unbrokendome.eventbus.EventSubscriber
 import org.unbrokendome.eventbus.TestEvent
@@ -31,21 +32,6 @@ class CglibSubscriberProxyClassGeneratorTest extends Specification {
             EventSubscriber.isAssignableFrom proxyClass
     }
 
-
-    def "handleMessage on proxy forwards to subscriber method"() {
-        given:
-            def testSubscriber = Mock(TestSubscriber)
-            def event = new TestEvent('1234')
-            def eventMessage = MessageBuilder.withPayload(event).build()
-
-        when: 'proxy is generated'
-            def proxy = newProxyInstance(testSubscriber)
-        and: 'handleMessage is called'
-            proxy.handleMessage(eventMessage)
-
-        then:
-            1 * testSubscriber.handleTestEvent(event)
-    }
 
 
     def "getEventType returns the configured event type"() {

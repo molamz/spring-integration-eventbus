@@ -28,17 +28,12 @@ repositories {
 
 dependencies {
 
-    compile 'org.springframework:spring-context:4.+'
-    compile 'org.springframework:spring-messaging:4.+'
-    compile 'org.springframework.integration:spring-integration-core:4.1.+'
-    compile 'org.springframework.integration:spring-integration-java-dsl:1.+'
-
-    compile 'org.slf4j:slf4j-api:1.7.+'
     compile 'com.google.guava:guava:18.0'
 
-    compile 'org.springframework.boot:spring-boot:1.2.2.RELEASE', optional
-    compile 'org.springframework.boot:spring-boot-autoconfigure:1.2.2.RELEASE', optional
+    compile 'org.springframework.boot:spring-boot:1.5.12.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-integration:1.5.12.RELEASE'
 
+    testCompile 'org.springframework.boot:spring-boot-starter-test:1.5.12.RELEASE'
     testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
     testCompile 'org.spockframework:spock-spring:1.0-groovy-2.4'
     testCompile 'org.mockito:mockito-all:1.10.8'
@@ -46,12 +41,6 @@ dependencies {
         exclude group: 'org.mockito'
     }
 
-    testCompile 'org.springframework:spring-test:4.+'
-
-    testCompile 'org.slf4j:jcl-over-slf4j:1.7.+'
-    testRuntime 'org.apache.logging.log4j:log4j-core:2.2'
-    testRuntime 'org.apache.logging.log4j:log4j-slf4j-impl:2.2'
-    testRuntime 'cglib:cglib-nodep:3.1'
 }
 
 
@@ -119,16 +108,8 @@ artifacts {
     archives javadocJar, sourcesJar
 }
 
-
-signing {
-    sign configurations.archives
-}
-
-
 install {
     repositories.mavenInstaller {
-        beforeDeployment { deployment -> signing.signPom(deployment) }
-
         pom = pomDefinition
     }
 }
